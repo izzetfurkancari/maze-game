@@ -36,3 +36,30 @@ const walls = [
         isStatic: true
     })
 ]
+World.add(world, walls)
+
+
+const grid = Array(M).fill(null).map(() => Array(N).fill(false))
+// console.log(grid)
+
+const verticals = Array(M).fill(null).map(() => Array(N-1).fill(false))
+// console.log(verticals)
+
+const horizontals = Array(N-1).fill(null).map(() => Array(M).fill(false))
+// console.log(horizontals)
+
+const shuffle = (arr) => {
+    let counter = arr.length
+
+    while (counter > 0) {
+        const i = Math.floor(Math.random()*counter)   
+
+        counter--
+
+        const temp = arr[counter]
+        arr[counter] = arr[i]
+        arr[i] = temp
+    }
+
+    return arr
+}
