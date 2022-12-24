@@ -98,3 +98,29 @@ const recurse = (row, column) => {
     })  
 
 }
+const startRow = Math.floor(Math.random()*M)
+const startColumn = Math.floor(Math.random()*N)
+recurse(startRow, startColumn)
+
+horizontals.forEach((row, rowIndex) => {
+    row.forEach((open, columnIndex) => {
+        if (open)
+            return
+        
+        const wall = Bodies.rectangle(
+            columnIndex*UNIT_LENGTH_X + UNIT_LENGTH_X/2,
+            rowIndex*UNIT_LENGTH_Y + UNIT_LENGTH_Y,
+            UNIT_LENGTH_X,
+            5,
+            {
+                isStatic: true,
+                label: 'wall',
+                render: {
+                    fillStyle: 'red'
+                }
+            }
+        )
+
+        World.add(world, wall)
+    })
+})
