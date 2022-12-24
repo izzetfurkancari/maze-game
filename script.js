@@ -63,3 +63,38 @@ const shuffle = (arr) => {
 
     return arr
 }
+const recurse = (row, column) => {
+    if (grid[row][column])
+        return
+
+    grid[row][column] = true  // is visited
+
+    const neighbours = shuffle([
+        [row-1, column, 'up'],
+        [row, column+1, 'right'],
+        [row+1, column, 'down'],
+        [row, column-1, 'left']
+    ])
+
+    neighbours.forEach(neighbour => {
+        const [nextRow, nextColumn, direction] = neighbour
+
+        if (nextRow<0 || nextRow>=M || nextColumn<0 || nextColumn>=N)
+            return  // same as continue clause
+            
+        if (grid[nextRow][nextColumn])  // is visited
+            return
+
+        if (direction === 'left')
+            verticals[row][column-1] = true
+        else if (direction === 'right')
+            verticals[row][column] = true
+        else if (direction === 'up')
+            horizontals[row-1][column] = true
+        else  // down
+            horizontals[row][column] = true
+
+        recurse(nextRow, nextColumn)
+    })  
+
+}
