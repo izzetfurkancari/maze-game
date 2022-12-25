@@ -124,3 +124,31 @@ horizontals.forEach((row, rowIndex) => {
         World.add(world, wall)
     })
 })
+// object to be taken to the goal
+const object = Bodies.circle(
+    UNIT_LENGTH_X/2,
+    UNIT_LENGTH_Y/2,
+    Math.min(UNIT_LENGTH_X, UNIT_LENGTH_Y)/4,  // ball radius
+    {
+        label: 'object',
+        render: {
+            fillStyle: 'blue'
+        }
+    }
+)
+World.add(world, object)
+
+// goal
+const goal = Bodies.rectangle(
+    WIDTH - UNIT_LENGTH_X/2,
+    HEIGHT - UNIT_LENGTH_Y/2,
+    UNIT_LENGTH_X/2,
+    UNIT_LENGTH_Y/2,
+    {
+        isStatic: true,
+        label: 'goal',
+        render: {
+            fillStyle: 'green'
+        }
+    }
+)
