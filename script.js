@@ -189,3 +189,23 @@ document.addEventListener('keydown', (event) => {
 // })
 
 // win condition (collision of object with goal)
+Events.on(engine, 'collisionStart', (event) => {
+    event.pairs.forEach(collision => {
+        const labels = ['object', 'goal']
+
+        if (labels.includes(collision.bodyA.label) && labels.includes(collision.bodyA.label)) {
+            console.log('Won!!')
+
+            world.gravity.y = 1
+
+            world.bodies.forEach(body => {
+                if (body.label === 'wall') {
+                    // walls are no longer static
+                    Body.setStatic(body, false)
+                }
+            })
+
+            document.querySelector('.winner').classList.remove('hidden')
+        }
+    })
+})
