@@ -152,3 +152,40 @@ const goal = Bodies.rectangle(
         }
     }
 )
+World.add(world, goal)
+
+// detecting keypresses for movement
+document.addEventListener('keydown', (event) => {
+    const {x, y} = object.velocity 
+    if (event.key === 'w' || event.key === 'ArrowUp'){
+        Body.setVelocity(object, {x: x, y:y-5})
+    }
+    else if (event.key === 'd' || event.key === 'ArrowRight'){
+        Body.setVelocity(object, {x: x+5, y: y})
+    }
+    else if (event.key === 's' || event.key === 'ArrowDown'){
+        Body.setVelocity(object, {x: x, y: y+5})
+        
+    }
+    else if (event.key === 'a' || event.key === 'ArrowLeft'){
+        Body.setVelocity(object, {x: x-5, y: y})
+    }
+})
+// document.addEventListener('keyup', event =>{
+//     const {x, y} = object.velocity 
+//     if (event.key === 'w' || event.key === 'ArrowUp'){
+//         Body.setVelocity(object, {x: x, y:0})
+//     }
+//     else if (event.key === 'd' || event.key === 'ArrowRight'){
+//         Body.setVelocity(object, {x: 0, y: y})
+//     }
+//     else if (event.key === 's' || event.key === 'ArrowDown'){
+//         Body.setVelocity(object, {x: x, y:0})
+        
+//     }
+//     else if (event.key === 'a' || event.key === 'ArrowLeft'){
+//         Body.setVelocity(object, {x: 0, y: y})
+//     }
+// })
+
+// win condition (collision of object with goal)
